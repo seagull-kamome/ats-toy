@@ -10,5 +10,5 @@ top_srcdir?=${srcdir}
 
 
 clean::
-	rm -rf *_[sd]ats.[co]
+	rm -rf *_[sd]ats.[co] *~
 

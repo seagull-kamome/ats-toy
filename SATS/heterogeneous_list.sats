@@ -7,16 +7,19 @@ staload "SATS/type_list.sats"
 
 infix 50 :+
 
-datatype heterogeneous_list (f:t@ype -> t@ype, xs:type_list, n:int)
-  = {f:t@ype -> t@ype} nil(f, nil, 0) of ()
-  | {f:t@ype -> t@ype} {t:t@ype}{xs:type_list}{n:int}
-    :+ (f, t :+ xs, n + 1) of (f(t), heterogeneous_list(f, xs, n) )
+datatype HeterogeneousList(f:t@ype -> t@ype, xs:TypeList, n:int)
+  = {f:t@ype -> t@ype} Nil'HeterogeneousList(f, Nil'TypeList, 0)
+  | {f:t@ype -> t@ype} {t:t@ype}{xs:TypeList}{n:int | n >= 0}
+    :+ (f, t :+ xs, n + 1) of (f(t), HeterogeneousList(f, xs, n) )
 
 
-prfun lemma_heterogeneous_list_length_param
-  {f:t@ype -> t@ype}{xs:type_list}{n:int}
-  (ys:heterogeneous_list(f, xs, n)) : [n >= 0] void
+prfun lemma_param'HeterogeneousList
+  {f:t@ype -> t@ype; flds:TypeList; n:int}
+  (xs:HeterogeneousList(f, flds, n)) : [0 <= n] void
 
 
+fun length'HeterogeneousList
+  {f:t@ype -> t@ype; flds:TypeList; n:int}
+  (xs:HeterogeneousList(f, flds, n)) : int(n)
 
 

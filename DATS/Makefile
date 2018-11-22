@@ -3,7 +3,8 @@ srcdir?=.
 top_srcdir?=..
 
 SOURCES:= \
-  type_list.dats
+  type_list.dats \
+  heterogeneous_list.dats
 
 all:
 	patscc -IATS .. -c ${SOURCES}
